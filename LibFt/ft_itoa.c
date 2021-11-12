@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-int	nbr_len(int nbr)
+int	nbr_len(long nbr)
 {
-	int	len;
+	long	len;
 
 	len = 0;
 	if (nbr == 0)
@@ -32,6 +32,21 @@ int	nbr_len(int nbr)
 	return (len);
 }
 
+char	*int_min(char *s)
+{
+	char	*min;
+	int		i;
+
+	i = 0;
+	min = "-2147483648\0";
+	while (i < 12)
+	{
+		s[i] = min[i];
+		i++;
+	}
+	return (s);
+}
+
 char	*ft_itoa(int n)
 {
 	int		i;
@@ -46,6 +61,8 @@ char	*ft_itoa(int n)
 		ptr[i] = '0';
 	if (n < 0)
 	{
+		if (n == -2147483648)
+			return (int_min(ptr));
 		ptr[0] = '-';
 		n = -n;
 	}
