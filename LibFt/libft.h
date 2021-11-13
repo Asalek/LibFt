@@ -21,6 +21,7 @@
 # include<stdlib.h>
 # include<ctype.h>
 # include<fcntl.h>
+# include<limits.h>
 
 //Functions Part1 :
 

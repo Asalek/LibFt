@@ -6,18 +6,28 @@
 /*   By: asalek <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/05 16:37:46 by asalek            #+#    #+#             */
-/*   Updated: 2021/11/10 18:31:11 by asalek           ###   ########.fr       */
+/*   Updated: 2021/11/14 00:41:31 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+int	check_min_max_long(double n, int a)
+{
+	n = a * n;
+	if (n > LONG_MAX)
+		return (-1);
+	if (n < LONG_MIN)
+		return (0);
+	return (n);
+}
+
 int	ft_atoi(const char	*str)
 {
-	int	i;
-	int	j;
-	int	a;
-	int	n;
+	int		i;
+	int		j;
+	int		a;
+	double	n;
 
 	i = 0;
 	j = 0;
@@ -38,5 +48,5 @@ int	ft_atoi(const char	*str)
 		n = n * 10 + (str[i] - 48);
 		i++;
 	}
-	return (a * n);
+	return (check_min_max_long(n, a));
 }
