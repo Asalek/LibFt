@@ -3,56 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalek   <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: asalek <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/11 22:16:20 by asalek            #+#    #+#             */
-/*   Updated: 2021/11/11 22:17:42 by asalek           ###   ########.fr       */
+/*   Created: 2021/11/13 05:15:30 by asalek            #+#    #+#             */
+/*   Updated: 2021/11/13 05:15:40 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	to_find (char c, char *set)
+int	ft_start(const char *s1, const char *set)
 {
-	int	i;
+	size_t	len;
+	size_t	i;
 
+	len = ft_strlen(s1);
 	i = 0;
-	while (set[i]) 
+	while (i < len)
 	{
-		if (set[i] == c)
-		{
-			return (1);
-		}
+		if (ft_strchr(set, s1[i]) == 0)
+			break ;
 		i++;
 	}
-	return (0);
+	return (i);
+}
+
+int	ft_end(const char *s1, const char *set)
+{
+	size_t	len;
+	size_t	i;
+
+	len = ft_strlen(s1);
+	i = 0;
+	while (i < len)
+	{
+		if (ft_strchr(set, s1[len - i - 1]) == 0)
+			break ;
+		i++;
+	}
+	return (len - i);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
-	size_t	j;
-	size_t	len;
-	i = 0;
-	j = 0;
-	len = ft_strlen ((char *)s1);
-	char *str1;
-	char *nset = (char *)set;
-	int nlen = len;
-	while (to_find (s1[i], nset) == 1)
-		   i++;
-	while (to_find (s1[len - 1], nset) == 1)
-		   len--;
-	str1 = (char *)malloc(sizeof(char) * ft_strlen (s1) - i -nlen + len + 1);
-	if (!s1)
-	{
+	int		start;
+	int		end;
+	char	*str;
+
+	if (s1 == NULL)
 		return (NULL);
-	}
-	while (s1[i] && i < len)
-	{
-		   str1[j] = s1[i];
-		   i++;
-		   j++;
-	}
-	return (str1);
+	if (set == NULL)
+		return (ft_strdup((char *)s1));
+	start = ft_start(s1, set);
+	end = ft_end(s1, set);
+	if (start >= end)
+		return (ft_strdup(""));
+	str = (char *)malloc(sizeof(char) * (end - start + 1));
+	if (str == NULL)
+		return (NULL);
+	ft_strlcpy(str, s1 + start, end - start + 1);
+	return (str);
 }
