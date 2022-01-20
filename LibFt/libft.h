@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asalek <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: asalek <asalek@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 20:12:53 by asalek            #+#    #+#             */
-/*   Updated: 2021/11/14 04:23:20 by asalek           ###   ########.fr       */
+/*   Updated: 2022/01/20 23:09:15 by asalek           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+
+//ADDITIONAL FUNCTIONS :
+
+int		ft_strcmp(const char *s1, const char *s2);
 
 //Bonus
 
